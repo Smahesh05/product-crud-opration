@@ -28,8 +28,11 @@ web application built with Node.js, Express.js, MongoDB, Javascript, HTML5, and 
    <ol start="2">
     <li>Install dependencies:</li>
   </ol>
+  <code>cd project-crud-operation</code>
   
-  <code>cd project-crud-operation <br>npm install</code>
+  <code>npm install</code>
+  
+  
   
   <ol start="3">
     <li>Set up environment variables:</li>
