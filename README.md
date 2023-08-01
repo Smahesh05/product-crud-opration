@@ -1,5 +1,5 @@
 # product-crud-opration
-web application built with Node.js, Express.js, MongoDB, Javascript, HTML5, and CSS3. This app allows users to create, update, view, and delete product entries in a comprehensive list, providing seamless management of product data.
+web application built with Node.js, Express.js, MongoDB, Javascript, HTML5, and CSS3. This app allows users to create, update, view, and delete product entries in a  list, providing  management of product data.
 
 <h2>Features</h2>
   <ul>
