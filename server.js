@@ -13,14 +13,18 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect(process.env.DATABASE_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(
+  "mongodb+srv://maheshsolanke84:root@product.lfyfets.mongodb.net/",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
 
 app.get("/products", async (req, res) => {
   try {
     const products = await Product.find();
+    res.setHeader("Content-Type", "application/json");
     res.json(products);
   } catch (err) {
     res.status(500).json({ error: "Internal server error" });
@@ -30,9 +34,23 @@ app.get("/products", async (req, res) => {
 app.post("/products", async (req, res) => {
   try {
     const { name, price, description } = req.body;
-    const product = new Product({ name, price, description });
-    await product.save();
-    res.status(201).json({ message: "Product created successfully", product });
+
+    const existingProduct = Product.findOne({
+      name: name,
+      price: price,
+      description: description,
+    });
+
+    if (existingProduct) {
+      res.status(400).json({ error: "Product already exists" });
+    } else {
+      const product = new Product({ name, price, description });
+      await product.save();
+
+      res
+        .status(201)
+        .json({ message: "Product created successfully", product });
+    }
   } catch (err) {
     res.status(500).json({ error: "Internal server error" });
   }

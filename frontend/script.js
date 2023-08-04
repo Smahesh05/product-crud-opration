@@ -51,9 +51,12 @@ async function addProduct(event) {
       productForm.reset();
       selectedProductId = null;
       fetchProducts();
+
       alert("Product added successfully!");
     } else {
-      console.error("Failed to add product:", response.statusText);
+      const errorResponse = await response.json();
+      alert(errorResponse.error); // Display the error message
+      console.error("Failed to add product:", errorResponse.error);
     }
   } catch (error) {
     console.error("Error adding product:", error);
